@@ -8,6 +8,8 @@ timeout 15>nul
 start pathadd.py
 echo 15 Saniye bekleyin. Pip yukleniyor.
 timeout 15>nul
+echo 15 Saniye bekleyin. Kaynak kod Yukleniyor.
+python gereksinimler2.py
 echo off
 mode 50
 mode 100
@@ -68,8 +70,6 @@ echo                                                         Y8b d88P
 echo                                                          "Y88P"                                                
 echo .
 echo .
-
-
 
 title  Gereksinimler Yukleniyor: PyQtWebEngine
 pip install PyQtWebEngine
