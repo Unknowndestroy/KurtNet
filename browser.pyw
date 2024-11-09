@@ -13,7 +13,7 @@ class WebTab(QWidget):
         self.layout = QVBoxLayout()
         self.setLayout(self.layout)
 
-        # Arama motoru seçici ve web tarayıcı
+
         self.search_engine_selector = QComboBox()
         for name, url in search_engines:
             self.search_engine_selector.addItem(name, url)
@@ -23,7 +23,7 @@ class WebTab(QWidget):
         self.layout.addWidget(self.search_engine_selector)
         self.layout.addWidget(self.web_view)
 
-        # Varsayılan arama motorunu yükle
+
         self.update_search_engine()
 
     def update_search_engine(self):
@@ -42,21 +42,21 @@ class SecureBrowser(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        # Pencere başlığı ve boyutu
+
         self.setWindowTitle('Güvenli Tarayıcı')
         self.setGeometry(100, 100, 1024, 768)
 
-        # Ana widget ve düzen
+
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
         self.layout = QVBoxLayout()
         self.central_widget.setLayout(self.layout)
 
-        # Sekme widget'ı
+
         self.tab_widget = QTabWidget()
         self.layout.addWidget(self.tab_widget)
 
-        # Arama motorları
+
         self.search_engines = [
             ("DuckDuckGo", "https://duckduckgo.com"),
             ("Google", "https://www.google.com"),
@@ -75,31 +75,29 @@ class SecureBrowser(QMainWindow):
         self.theme_selector.addItem("Karanlık", "dark")
         self.theme_selector.currentIndexChanged.connect(self.apply_theme)
 
-        # Arama yapma butonu
+      
         self.search_button = QPushButton('Arama Yap')
         self.search_button.clicked.connect(self.perform_search)
         self.layout.addWidget(self.search_button)
 
-        # Menü çubuğu
+     
         self.menu_bar = self.menuBar()
         file_menu = self.menu_bar.addMenu('Ayarlar')
 
-        # Ayarlar menüsü öğeleri
+   
         open_file_action = QAction('Ayarları Aç', self)
         open_file_action.triggered.connect(self.open_settings_dialog)
         file_menu.addAction(open_file_action)
 
-        # Yeni sekme açma
+    
         self.add_new_tab_action = QAction('Yeni Sekme', self)
         self.add_new_tab_action.triggered.connect(self.add_new_tab)
         self.menu_bar.addAction(self.add_new_tab_action)
 
-        # Hata raporlama butonu
-        self.report_button = QPushButton('Hata Verilerini Gönder')
-        self.report_button.clicked.connect(self.send_error_report)
-        self.layout.addWidget(self.report_button)
+    
 
-        # Başlangıç sekmesini ekle
+
+ 
         self.add_new_tab()
 
     def add_new_tab(self):
@@ -127,15 +125,15 @@ class SecureBrowser(QMainWindow):
         file_name, _ = QFileDialog.getOpenFileName(self, "Ayarlar Dosyasını Aç", "", "JSON Dosyaları (*.json);;Tüm Dosyalar (*)", options=options)
         if file_name:
             print(f"Seçilen dosya: {file_name}")
-            # Dosya içeriğini okuyup ayarları uygulama kısmını buraya ekleyebilirsiniz
+           
 
     def send_error_report(self):
         error_data = {
             'timestamp': '2024-09-18T12:34:56',
             'browserVersion': 'PyQt5 Secure Browser',
-            'errors': 'Örnek hata mesajı'  # Gerçek hata yakalama sistemi entegre edilebilir
+            'errors': 'Örnek hata mesajı'  
         }
-        api_url = 'http://localhost:5000/receive-error-report'  # Sunucu tarafı API URL'si
+        api_url = 'http://localhost:5000/receive-error-report'  
         try:
             response = requests.post(api_url, json=error_data)
             if response.status_code == 200:
@@ -145,7 +143,7 @@ class SecureBrowser(QMainWindow):
         except Exception as e:
             print('Bağlantı hatası:', e)
 
-# Ana uygulamayı başlatma
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     browser = SecureBrowser()
