@@ -1,2 +1,2 @@
-# KurtNetKaynakKodv2
+# KurtNet
 # TERMUX NOT SUPPORTED
